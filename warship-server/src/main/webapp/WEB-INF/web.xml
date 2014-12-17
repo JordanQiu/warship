@@ -8,33 +8,42 @@
 	<display-name>Warship Restful Web Application</display-name>
 	<description>Developed By SevenUp</description>
 
-	<!-- - Location of the XML file that defines the root application context. - Applied by ContextLoaderListener.   -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/business-config.xml, classpath:spring/tools-config.xml</param-value>
-	</context-param>
+	  <context-param>
+	      <param-name>contextClass</param-name>
+	      <param-value>
+	         org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+	      </param-value>
+	  </context-param>
+	  <context-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>org.sevenup.configuration.ApplicationConfiguration</param-value>
+	  </context-param>
 
+	  <servlet>
+	      <servlet-name>warship</servlet-name>
+	      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	      <init-param>
+	          <param-name>contextClass</param-name>
+	          <param-value>
+	              org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+	          </param-value>
+	      </init-param>
+	      <init-param>
+	          <param-name>contextConfigLocation</param-name>
+	          <param-value>org.sevenup.configuration.ServletConfiguration</param-value>
+	      </init-param>
+	      <load-on-startup>1</load-on-startup>
+	  </servlet>
+	  <servlet-mapping>
+	      <servlet-name>warship</servlet-name>
+	      <url-pattern>/</url-pattern>
+	  </servlet-mapping>
     
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- - Servlet that dispatches request to registered handlers (Controller implementations). -->
-	<servlet>
-		<servlet-name>SevenUp</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring/mvc-core-config.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>SevenUp</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-    
 	<!-- used so we can use forms of method type 'PUT' and 'DELETE' (such as 
 		in the 7Up form) see here: http://static.springsource.org/spring/docs/current/spring-framework-reference/html/view.html#rest-method-conversion -->
 	<filter>
@@ -44,7 +53,7 @@
 
 	<filter-mapping>
 		<filter-name>httpMethodFilter</filter-name>
-		<servlet-name>SevenUp</servlet-name>
+		<servlet-name>warship</servlet-name>
 	</filter-mapping>
 	
 	<!-- this is filter is used for cross domain access -->
