@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 @Configuration
-@Import(WebApplicationConfiguration.class)
+@Import(WebMvcConfiguration.class)
 @ImportResource({
   "classpath:spring/business-config.xml",
   "classpath:spring/tools-config.xml",

@@ -44,8 +44,7 @@
 	</listener>
 
 
-	<!-- used so we can use forms of method type 'PUT' and 'DELETE' (such as 
-		in the 7Up form) see here: http://static.springsource.org/spring/docs/current/spring-framework-reference/html/view.html#rest-method-conversion -->
+	<!-- used so we can use forms of method type 'PUT' and 'DELETE' (such as -->
 	<filter>
 		<filter-name>httpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
