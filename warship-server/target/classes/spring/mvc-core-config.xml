@@ -36,12 +36,6 @@
 		</constructor-arg>
 	</bean>
 
-    <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
-    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-
     <!-- serve static resources (*.html, ...) from src/main/webapp/ -->
     <mvc:default-servlet-handler/>
-
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages/messages"/>
-
 </beans>

@@ -32,7 +32,7 @@
 		<junit.version>4.12-beta-3</junit.version>
 		<!-- guava -->
 		<guava.version>18.0</guava.version>
-		<jetty.javax.servlet.version>5.1.12</jetty.javax.servlet.version>
+		<servlet.version>3.0.1</servlet.version>
 	</properties>
 
 
@@ -155,11 +155,12 @@
 			<version>${guava.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>jetty</groupId>
-			<artifactId>javax.servlet</artifactId>
-			<version>${jetty.javax.servlet.version}</version>
-		</dependency>
+        <!-- servlet 3 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>

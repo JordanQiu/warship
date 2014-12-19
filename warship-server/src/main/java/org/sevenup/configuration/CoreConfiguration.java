@@ -1,12 +1,12 @@
 package org.sevenup.configuration;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-//@EnableWebMvc
-//@EnableMongoRepositories
-//@EnableSpringDataWebSupport
+@EnableWebMvc
+@ComponentScan(basePackages = {"org.sevenup.rest"})
 public class CoreConfiguration  {
-//	extends AbstractMongoConfiguration
 
 }
