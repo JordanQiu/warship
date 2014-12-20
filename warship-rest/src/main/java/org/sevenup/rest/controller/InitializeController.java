@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/initialize")
+@RequestMapping("/sevenup")
 @Produces(MediaType.APPLICATION_JSON)
 public class InitializeController {
 	@Autowired

@@ -6,13 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.repository.support.DomainClassConverter;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.hateoas.config.EnableHypermediaSupport;
-import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 @Configuration
 @EnableWebMvc
-//@EnableHypermediaSupport(type = { HypermediaType.HAL })
 @EnableSpringDataWebSupport
 public class WebMvcConfiguration extends WebMvcConfigurationSupport{
 	@Bean @Autowired
