@@ -25,4 +25,11 @@ public class BookServiceHandler implements BookService {
 		return bookList;
 	}
 
+	@Override
+	public List<Book> saveBooks(List<Book> books) throws DataAccessException{
+	
+		return Lists.newArrayList(bookRepository.save(books));
+	
+	}
+
 }

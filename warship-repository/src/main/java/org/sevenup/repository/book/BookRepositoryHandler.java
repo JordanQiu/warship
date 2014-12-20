@@ -1,6 +1,9 @@
 package org.sevenup.repository.book;
 
+import java.util.List;
+
 import org.sevenup.domain.book.Book;
+import org.sevenup.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -8,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.google.common.collect.Lists;
 @Repository
 public class BookRepositoryHandler implements BookRepository {
 	@Autowired
@@ -85,9 +90,11 @@ public class BookRepositoryHandler implements BookRepository {
 	}
 
 	@Override
-	public <S extends Book> Iterable<S> save(Iterable<S> arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public <S extends Book> Iterable<S> save(Iterable<S> entities) {
+		List books = Lists.newArrayList(entities);
+		mongoTemplate.insertAll(books);
+		books = mongoTemplate.findAll(Book.class);
+		return books;
 	}
 
 	@Override

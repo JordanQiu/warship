@@ -7,4 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 public interface BookService {
 	List<Book> findBook() throws DataAccessException;
+
+	List<Book> saveBooks(List<Book> books)throws DataAccessException;
+	
 }
