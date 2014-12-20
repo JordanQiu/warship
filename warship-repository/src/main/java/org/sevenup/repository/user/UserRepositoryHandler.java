@@ -2,7 +2,7 @@ package org.sevenup.repository.user;
 
 import java.util.List;
 
-import org.sevenup.domain.user.Book;
+import org.sevenup.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -23,52 +23,52 @@ public class UserRepositoryHandler implements UserRepository{
 	MongoTemplate mongoTemplate;
 	
 	@Override
-	public Iterable<Book> findAll(Sort sort) {
+	public Iterable<User> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Book> findAll(Pageable pageable) {
+	public Page<User> findAll(Pageable pageable) {
 		Query query = new Query();
 		query.with(pageable);
-		Page<Book> page = new PageImpl<Book>(mongoTemplate.find(query, Book.class));
+		Page<User> page = new PageImpl<User>(mongoTemplate.find(query, User.class));
 		return page;
 	}
 
 	@Override
-	public <S extends Book> S save(S entity) {
+	public <S extends User> S save(S entity) {
 		mongoTemplate.save(entity);   
 		return entity;
 	}
 
 	@Override
-	public <S extends Book> Iterable<S> save(Iterable<S> entities) {
+	public <S extends User> Iterable<S> save(Iterable<S> entities) {
 		List users = Lists.newArrayList(entities);
 		mongoTemplate.insertAll(users);
-		users = mongoTemplate.findAll(Book.class);
+		users = mongoTemplate.findAll(User.class);
 		return users;
 	}
 
 	@Override
-	public Book findOne(String id) {
-		Book user = mongoTemplate.findOne(new Query(Criteria.where("uid").is(id)), Book.class);
+	public User findOne(String id) {
+		User user = mongoTemplate.findOne(new Query(Criteria.where("uid").is(id)), User.class);
 		return user;
 	}
 
 	@Override
 	public boolean exists(String id) {
-		boolean exists = mongoTemplate.exists(new Query(Criteria.where("uid").is(id)), Book.class);
+		boolean exists = mongoTemplate.exists(new Query(Criteria.where("uid").is(id)), User.class);
 		return exists;
 	}
 
 	@Override
-	public Iterable<Book> findAll() {
-		return mongoTemplate.findAll(Book.class);
+	public Iterable<User> findAll() {
+		return mongoTemplate.findAll(User.class);
 	}
 
 	@Override
-	public Iterable<Book> findAll(Iterable<String> ids) {
+	public Iterable<User> findAll(Iterable<String> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -81,16 +81,16 @@ public class UserRepositoryHandler implements UserRepository{
 
 	@Override
 	public void delete(String id) {
-		mongoTemplate.remove(new Query(Criteria.where("uid").is(id)), Book.class);
+		mongoTemplate.remove(new Query(Criteria.where("uid").is(id)), User.class);
 	}
 
 	@Override
-	public void delete(Book entity) {
+	public void delete(User entity) {
 		mongoTemplate.remove(entity);
 	}
 
 	@Override
-	public void delete(Iterable<? extends Book> entities) {
+	public void delete(Iterable<? extends User> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -103,15 +103,15 @@ public class UserRepositoryHandler implements UserRepository{
 
 	@Override
 	public void createCollection() {
-		if(!mongoTemplate.collectionExists(Book.class)){
-			mongoTemplate.createCollection(Book.class);
+		if(!mongoTemplate.collectionExists(User.class)){
+			mongoTemplate.createCollection(User.class);
 		}
 	}
 
 	@Override
 	public void dropCollection() {
-		if(mongoTemplate.collectionExists(Book.class)){
-			mongoTemplate.dropCollection(Book.class);
+		if(mongoTemplate.collectionExists(User.class)){
+			mongoTemplate.dropCollection(User.class);
 		}
 	}
 	}

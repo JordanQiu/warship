@@ -12,7 +12,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.hateoas.ResourceSupport;
 @XmlRootElement(name = "user")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Book extends ResourceSupport implements Serializable{
+public class User extends ResourceSupport implements Serializable{
 	@Id
 	private String uid;
 	private String name;

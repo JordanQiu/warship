@@ -2,18 +2,18 @@ package org.sevenup.service.user;
 
 import java.util.List;
 
-import org.sevenup.domain.user.Book;
+import org.sevenup.domain.user.User;
 import org.springframework.dao.DataAccessException;
 
 
 public interface UserService {
-    List<Book> findUsers() throws DataAccessException;
+    List<User> findUsers() throws DataAccessException;
 
-    Book findUserById(String id) throws DataAccessException;
+    User findUserById(String id) throws DataAccessException;
 
-    Book saveUser(Book user) throws DataAccessException;
+    User saveUser(User user) throws DataAccessException;
 
-    List<Book> saveUsers(List<Book> users) throws DataAccessException;
+    List<User> saveUsers(List<User> users) throws DataAccessException;
     
     void deleteUser(String id) throws DataAccessException;
 
