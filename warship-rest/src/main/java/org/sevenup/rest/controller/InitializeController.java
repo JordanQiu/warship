@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.sevenup.domain.memo.Memo;
-import org.sevenup.domain.user.User;
+import org.sevenup.domain.user.Book;
 import org.sevenup.service.memo.MemoService;
 import org.sevenup.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +31,10 @@ public class InitializeController {
 	@RequestMapping(method = RequestMethod.GET, value = "/user")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public ResponseEntity<List<User>> initialUser() {
-		List<User> users = new ArrayList<User>();
+	public ResponseEntity<List<Book>> initialUser() {
+		List<Book> users = new ArrayList<Book>();
 		for(int i=0;i<15;i++){
-			User temp = new User();
+			Book temp = new Book();
 			temp.setUid("uid"+i);
 			temp.setAlt("Alt-"+i);
 			temp.setAvatar("avatar-"+i);
@@ -44,7 +44,7 @@ public class InitializeController {
 			users.add(temp);
 		}
 		users = userService.saveUsers(users);
-		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
+		return new ResponseEntity<List<Book>>(users,HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/memo")

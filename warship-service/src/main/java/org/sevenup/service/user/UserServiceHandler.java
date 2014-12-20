@@ -2,7 +2,7 @@ package org.sevenup.service.user;
 
 import java.util.List;
 
-import org.sevenup.domain.user.User;
+import org.sevenup.domain.user.Book;
 import org.sevenup.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -21,23 +21,23 @@ public class UserServiceHandler implements UserService{
 		userRepository.createCollection();
 	}
 	@Override
-	public List<User> findUsers() throws DataAccessException {
-		List<User> userList = Lists.newArrayList(userRepository.findAll());
+	public List<Book> findUsers() throws DataAccessException {
+		List<Book> userList = Lists.newArrayList(userRepository.findAll());
 		return userList;
 	}
 
 	@Override
-	public User findUserById(String id) throws DataAccessException {
+	public Book findUserById(String id) throws DataAccessException {
 		return userRepository.findOne(id);
 	}
 
 	@Override
-	public User saveUser(User user) throws DataAccessException {
+	public Book saveUser(Book user) throws DataAccessException {
 		return userRepository.save(user);
 	}
 	
 	@Override
-	public List<User> saveUsers(List<User> users) throws DataAccessException {
+	public List<Book> saveUsers(List<Book> users) throws DataAccessException {
 		return Lists.newArrayList(userRepository.save(users));
 	}
 

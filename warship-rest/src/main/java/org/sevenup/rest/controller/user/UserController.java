@@ -6,7 +6,7 @@ import java.util.UUID;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.sevenup.domain.user.User;
+import org.sevenup.domain.user.Book;
 import org.sevenup.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -34,48 +34,48 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public ResponseEntity<List<User>> getUsers() {
-		List<User> userList =  userService.findUsers();
-		return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+	public ResponseEntity<List<Book>> getUsers() {
+		List<Book> userList =  userService.findUsers();
+		return new ResponseEntity<List<Book>>(userList, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public ResponseEntity<User> viewUser(@PathVariable String id) {
-		User user = userService.findUserById(id);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+	public ResponseEntity<Book> viewUser(@PathVariable String id) {
+		Book user = userService.findUserById(id);
+		return new ResponseEntity<Book>(user, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<User> createUser(@RequestBody User user,UriComponentsBuilder builder) {
+	public ResponseEntity<Book> createUser(@RequestBody Book user,UriComponentsBuilder builder) {
 		UUID idKey = UUID.randomUUID();
 		userService.saveUser(user);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(builder.path("/user/{id}").buildAndExpand(idKey.toString()).toUri());
-		return new ResponseEntity<User>(user, headers, HttpStatus.CREATED);
+		return new ResponseEntity<Book>(user, headers, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
+	public ResponseEntity<Book> updateUser(@RequestBody Book user) {
 		UUID idKey = UUID.randomUUID();
 		userService.saveUser(user);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		return new ResponseEntity<Book>(user, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable String id) {
+	public ResponseEntity<Book> deleteUser(@PathVariable String id) {
 		UUID idKey = UUID.randomUUID();
 		userService.deleteUser(id);
-		return new ResponseEntity<User>(HttpStatus.OK);
+		return new ResponseEntity<Book>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "signIn")
 	@ResponseBody
-	public boolean signIn(@RequestBody User User) {
+	public boolean signIn(@RequestBody Book User) {
 		return true;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "signUp")
-	public ResponseEntity<User> signUp(@RequestBody User User) {
-		return new ResponseEntity<User>(User, HttpStatus.OK);
+	public ResponseEntity<Book> signUp(@RequestBody Book User) {
+		return new ResponseEntity<Book>(User, HttpStatus.OK);
 	}
 }
