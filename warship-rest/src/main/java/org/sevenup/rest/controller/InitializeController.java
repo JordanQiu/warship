@@ -7,8 +7,10 @@ import java.util.List;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.sevenup.domain.book.Book;
 import org.sevenup.domain.memo.Memo;
 import org.sevenup.domain.user.User;
+import org.sevenup.service.book.BookService;
 import org.sevenup.service.memo.MemoService;
 import org.sevenup.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,23 @@ public class InitializeController {
     private UserService userService;
 	@Autowired
     private MemoService memoService;
+	@Autowired
+    private BookService bookService;
+	@RequestMapping(method = RequestMethod.GET, value = "/book")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public ResponseEntity<List<Book>> initialBook() {
+		List<Book> books = new ArrayList<Book>();
+		for(int i=0;i<15;i++){
+			Book temp = new Book();
+	        temp.setAltTitle("Jordan");;
+			books.add(temp);
+		}
+		books = bookService.saveBooks(books);
+		return new ResponseEntity<List<Book>>(books,HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/user")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
